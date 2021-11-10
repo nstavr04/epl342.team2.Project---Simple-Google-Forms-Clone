@@ -1,6 +1,34 @@
+<?php
+
+// Edw px enothika me tin vasi kai tha mas dosei kapious users
+
+$users = array();
+
+$a = array(
+      "username" => "Nick",
+      "email" =>  "Some@email.com"
+);
+
+$b = array("username" => "John", 
+            "email" =>  "Someone@email.com"
+);
+
+//Prosthetw sto users array to a kai b array
+array_push($users,$a);
+array_push($users,$b);
+
+var_dump($users);
+
+// Tipota meta apo afto tha ektelestei
+// Kalo gia debugging
+//exit();
+
+?>
+
 <html>
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
@@ -21,18 +49,19 @@
 <div class="container">
   <h1 id="sups">Supporters</h1>
   <div class="row text-center">
-    <div class="col-sm">
-		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Antu_im-invisible-user.svg/240px-Antu_im-invisible-user.svg.png">
-		<div>User 1</div>
-    </div>
-    <div class="col-sm">
-		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Antu_im-invisible-user.svg/240px-Antu_im-invisible-user.svg.png">
-		<div>User 2</div>
-    </div>
+    <!-- emperikleiw ton html kodika se php for loop 
+        for ($i=1; $i <= 4; $i++)
+    -->
+
+    <?php foreach ($users as $user) { ?> 
 	<div class="col-sm">
 		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Antu_im-invisible-user.svg/240px-Antu_im-invisible-user.svg.png">
-		<div>User 3</div>
+		<!-- i php vlepei mesa apo ta "" gia variables kai tis anagnwrizei -->
+    <!-- an xrisimopoiisw '' den psaxnei gia variables alla pali einai string -->
+    <div> <?php echo "User ".$user["username"]; ?></div>
     </div>
+    <?php } ?>
+
   </div>
 </div>
 
