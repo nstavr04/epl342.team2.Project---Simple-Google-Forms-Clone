@@ -423,7 +423,18 @@
         <!-- Last Button to view the company manager and simple user options -->
         <div class="p-3">
             <!-- Buttons do not work -->
-            <button href="ObserverHomePage.php" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
+            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                <div class = "text-center"><h4>Enter company number to view additional show options</h4></div>
+                                <hr>
+
+                            <!-- RegNum input --> 
+                            <div class="form-outline mb-4">
+                                <input type="number" name="RegNum" id="form1Example21" class="form-control" />
+                                <label class="form-label" for="form1Example21">Company Registration Number</label>
+                            </div> 
+                <button type="submit" name="ViewShowOptions" href="ObserverHomePage.php" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
+            </form>
+
             <br>
             <div class="w-50" style="margin-left: 25.5%;">
             <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
