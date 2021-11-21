@@ -35,6 +35,51 @@
 
         <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
 
+        <div class="p-3">
+            <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+            <br>
+            <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
+            <br>
+            <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
+            <br>
+            <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
+            <br>
+            <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
+            <br>
+            <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
+            <br>
+            <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
+            <br>
+            <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button>
+            <br>
+            <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+            <br>
+
+            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                <div class = "text-center"><h4>Show k least included questions in questionnaires</h4></div>
+                                <hr>
+
+                            <!-- k parameter input --> 
+                            <div class="form-outline mb-4">
+                                <input type="number" name="kNumber" id="form1Example21" class="form-control" />
+                                <label class="form-label" for="form1Example21">Enter k parameter</label>
+                            </div> 
+                <button type="submit" name="kParameterQuestion" class="btn btn-primary btn-block">Search</button>
+            </form>
+
+            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                <div class = "text-center"><h4>Show total number of questions in a questionnaire including its child questionnaires</h4></div>
+                                <hr>
+
+                            <!-- X parameter input --> 
+                            <div class="form-outline mb-4">
+                                <input type="number" name="xNumber" id="form1Example21" class="form-control" />
+                                <label class="form-label" for="form1Example21">Enter Parent Questionnaire Number ID</label>
+                            </div> 
+                <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block">Search</button>
+            </form>
+
+        </div>
 
         <!-- Last Button to view the company manager and simple user options -->
         <div class="p-3">
