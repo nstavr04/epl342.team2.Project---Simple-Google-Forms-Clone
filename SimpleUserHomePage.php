@@ -15,264 +15,28 @@
 	<!-- MDB -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.css" rel="stylesheet"/>
 
-    <title>Company Manager Home Page</title>
+    <title>Simple User Home Page</title>
   </head>
 
   <body>
 
-  <div class="text-center page-header">
-		<br>
-		<h2>Welcome to Company Manager Home Page</h2>
-        <hr>
-	</div>
-
-    <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
-        <h3>Pick one of the options below</h3>
-        <hr>
-        <br>
-    </div>
-
-
-        <!-- Accordion with options and forms in it -->
-        
-        <div class="accordion p-3" id="accordion">
-
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-        <button
-            class="accordion-button"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-        >
-            Add a Simple User
-        </button>
-        </h2>
-        <div
-        id="collapseOne"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingOne"
-        data-mdb-parent="#accordionExample"
-        >
-        <div class="accordion-body">
-            
-
-            <!-- The first form for adding company -->
-            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
-
-            <div class = "text-center"><h4>Enter Simple User Details</h4></div>
-            <hr>
-
-            <!-- FName input --> 
-            <div class="form-outline mb-4">
-                <input type="text" name="FName" id="form1Example1" class="form-control" />
-                <label class="form-label" for="form1Example1">Username</label>
-            </div>
-
-            <!-- ID input --> 
-            <div class="form-outline mb-4">
-                <input type="number" name="ID" id="form1Example2" class="form-control" />
-                <label class="form-label" for="form1Example2">ID</label>
-            </div>
-
-            <!-- BirthDate input --> 
-            <div class="form-outline mb-4">
-                <input type="date" name="BirthDate" id="form1Example3" class="form-control" />
-                <label class="form-label" for="form1Example3">Birth Date</label>
-            </div>
-
-            <!-- Sex input --> 
-            <div class="form-outline mb-4">
-                <input type="number" name="Sex" id="form1Example4" min="0" max="1" class="form-control" />
-                <label class="form-label" for="form1Example4">Sex (0 for Male | 1 for Female)</label>
-            </div>
-
-            <!-- Username input --> 
-            <div class="form-outline mb-4">
-                <input type="text" name="UserName" id="form1Example5" class="form-control" />
-                <label class="form-label" for="form1Example5">Username</label>
-            </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-                <input type="password" name="Pass" id="form1Example6" class="form-control" />
-                <label class="form-label" for="form1Example6">Password</label>
-            </div>
-
-            <!-- SuperID input -->
-            <div class="form-outline mb-4">
-                <input type="number" name="SuperID" id="form1Example7" class="form-control" />
-                <label class="form-label" for="form1Example7">Supervisor ID</label>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" name="CreateSimpleUser" class="btn btn-primary btn-block">Submit</button>
+    <div class="text-center page-header">
             <br>
-            </form>
-
-
+            <h2>Welcome to Simple User Home Page</h2>
+            <hr>
         </div>
+
+        <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
+            <h3>Pick one of the options below</h3>
+            <hr>
+            <br>
         </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-        <button
-            class="accordion-button collapsed"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#collapseTwo"
-            aria-expanded="false"
-            aria-controls="collapseTwo"
-        >
-            Remove a Simple User
-        </button>
-        </h2>
-        <div
-        id="collapseTwo"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingTwo"
-        data-mdb-parent="#accordionExample"
-        >
-        <div class="accordion-body">
+
+      <!-- Accordion with options and forms in it -->
             
-                <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
-                    <div class = "text-center"><h4>Enter Simple User to Remove</h4></div>
-                    <hr>
+      <div class="accordion p-3" id="accordion">
 
-                <!-- ID input --> 
-                <div class="form-outline mb-4">
-                    <input type="number" name="ID" id="form1Example8" class="form-control" />
-                    <label class="form-label" for="form1Example8">ID</label>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" name="RemoveSimpleUser" class="btn btn-primary btn-block">Submit</button>
-                <br>
-                </form>
-
-        </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-        <button
-            class="accordion-button collapsed"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#collapseThree"
-            aria-expanded="false"
-            aria-controls="collapseThree"
-        >
-            View Details of a Simple User
-        </button>
-        </h2>
-        <div
-        id="collapseThree"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingThree"
-        data-mdb-parent="#accordionExample"
-        >
-        <div class="accordion-body">
-            
-                <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
-                    <div class = "text-center"><h4>Enter Simple User to View</h4></div>
-                    <hr>
-
-                <!-- ID input --> 
-                <div class="form-outline mb-4">
-                    <input type="number" name="ID" id="form1Example9" class="form-control" />
-                    <label class="form-label" for="form1Example9">ID</label>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" name="ViewSimpleUser" class="btn btn-primary btn-block">Search</button>
-                <br>
-                </form>
-
-        </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-        <button
-            class="accordion-button collapsed"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#collapseFour"
-            aria-expanded="false"
-            aria-controls="collapseFour"
-        >
-            Modify Details of a Simple User
-        </button>
-        </h2>
-        <div
-        id="collapseFour"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingFour"
-        data-mdb-parent="#accordionExample"
-        >
-        <div class="accordion-body">
-            
-        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
-                    <div class = "text-center"><h4>Enter Simple User ID</h4></div>
-                    <hr>
-
-                <!-- ID input --> 
-                <div class="form-outline mb-4">
-                    <input type="number" name="ID" id="form1Example10" class="form-control" />
-                    <label class="form-label" for="form1Example10">ID</label>
-                </div>
-
-                <div class = "text-center"><h4>Enter the new Simple User Details</h4></div>
-                    <hr>
-
-                    <!-- FName input --> 
-                <div class="form-outline mb-4">
-                    <input type="text" name="FName" id="form1Example11" class="form-control" />
-                    <label class="form-label" for="form1Example11">Username</label>
-                </div>                     
-
-                <!-- BirthDate input --> 
-                <div class="form-outline mb-4">
-                    <input type="date" name="BirthDate" id="form1Example12" class="form-control" />
-                    <label class="form-label" for="form1Example12">Birth Date</label>
-                </div>
-
-                <!-- Sex input --> 
-                <div class="form-outline mb-4">
-                    <input type="number" name="Sex" id="form1Example13" min="0" max="1" class="form-control" />
-                    <label class="form-label" for="form1Example13">Sex (0 for Male | 1 for Female)</label>
-                </div>
-
-                <!-- Username input --> 
-                <div class="form-outline mb-4">
-                    <input type="text" name="UserName" id="form1Example14" class="form-control" />
-                    <label class="form-label" for="form1Example14">Username</label>
-                </div>
-
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <input type="password" name="Pass" id="form1Example15" class="form-control" />
-                    <label class="form-label" for="form1Example15">Password</label>
-                </div>
-
-                <!-- SuperID input -->                       
-                <div class="form-outline mb-4">
-                    <input type="number" name="SuperID" id="form1Example15" class="form-control" />
-                    <label class="form-label" for="form1Example15">Supervisor ID</label>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" name="ModifySimpleUser" class="btn btn-primary btn-block">Submit</button>
-                <br>
-                </form>
-
-        </div>
-        </div>
-    </div>
-    <div class="accordion-item">
+      <div class="accordion-item">
         <h2 class="accordion-header" id="headingFive">
         <button
             class="accordion-button collapsed"
@@ -675,7 +439,7 @@
     <!-- Last Button to view the company manager and simple user options -->
     <div class="p-3">
     <!-- Buttons do not work -->
-    <button href="CompanyManagerHomePage.php" class="btn btn-primary btn-block">View Options regarding Showing additional Information</button>
+    <button href="SimpleUserHomePage.php" class="btn btn-primary btn-block">View Options regarding Showing additional Information</button>
     <br>
     <div class="w-50" style="margin-left: 25.5%;">
     <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
@@ -690,7 +454,6 @@
     die('<meta http-equiv="refresh" content="2; url=index.php" />');
     } 
     ?> 
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
