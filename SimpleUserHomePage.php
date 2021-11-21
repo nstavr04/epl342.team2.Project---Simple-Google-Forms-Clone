@@ -432,6 +432,46 @@
         </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNine">
+        <button
+            class="accordion-button collapsed"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#collapseNine"
+            aria-expanded="false"
+            aria-controls="collapseNine"
+        >
+            Clone a Questionnaire
+        </button>
+        </h2>
+        <div
+        id="collapseNine"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingNine"
+        data-mdb-parent="#accordionExample"
+        >
+        <div class="accordion-body">
+            
+                <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                    <div class = "text-center"><h4>Enter Questionnaire Number ID to clone</h4></div>
+                    <hr>
+
+                <!-- QairNum input --> 
+                <div class="form-outline mb-4">
+                    <input type="number" name="QairNum" id="form1Example16" class="form-control" />
+                    <label class="form-label" for="form1Example16">Questionnaire Number ID</label>
+                </div>                               
+
+                <!-- Submit button -->
+                <button type="submit" name="CloneQuestionnaire" class="btn btn-primary btn-block">Submit</button>
+                <br>
+                </form>
+
+
+        </div>
+        </div>
+    </div>
     </div>
 
     <br>
