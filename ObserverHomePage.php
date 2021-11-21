@@ -54,13 +54,77 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+
+                    <!-- The first form for adding company -->
+                    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                        <div class = "text-center"><h4>Enter Company Details</h4></div>
+                        <hr>
+
+                    <!-- RegNum input --> 
+                    <div class="form-outline mb-4">
+                        <input type="number" name="RegNum" id="form1Example1" class="form-control" />
+                        <label class="form-label" for="form1Example1">Company Registration Number</label>
+                    </div>
+
+                    <!-- CName input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" name="CName" id="form1Example2" class="form-control" />
+                        <label class="form-label" for="form1Example2">Company Name</label>
+                    </div>
+
+                     <!-- The second form for adding company manager -->
+                    <div class = "text-center"><h4>Enter Company Manager Details</h4></div>
+                     <hr>
+
+                    <!-- FName input --> 
+                    <div class="form-outline mb-4">
+                        <input type="text" name="FName" id="form1Example3" class="form-control" />
+                        <label class="form-label" for="form1Example3">Username</label>
+                    </div>
+
+                    <!-- ID input --> 
+                    <div class="form-outline mb-4">
+                        <input type="number" name="ID" id="form1Example4" class="form-control" />
+                        <label class="form-label" for="form1Example4">ID</label>
+                    </div>
+
+                    <!-- BirthDate input --> 
+                    <div class="form-outline mb-4">
+                        <input type="date" name="BirthDate" id="form1Example5" class="form-control" />
+                        <label class="form-label" for="form1Example5">Birth Date</label>
+                    </div>
+
+                    <!-- Sex input --> 
+                    <div class="form-outline mb-4">
+                        <input type="number" name="Sex" id="form1Example6" min="0" max="1" class="form-control" />
+                        <label class="form-label" for="form1Example6">Sex (0 for Male | 1 for Female)</label>
+                    </div>
+
+                    <!-- Username input --> 
+                    <div class="form-outline mb-4">
+                        <input type="text" name="UserName" id="form1Example7" class="form-control" />
+                        <label class="form-label" for="form1Example7">Username</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" name="Pass" id="form1Example8" class="form-control" />
+                        <label class="form-label" for="form1Example8">Password</label>
+                    </div>
+
+                    <!-- SuperID input -->
+                    <div class="form-outline mb-4">
+                        <input type="number" name="SuperID" id="form1Example9" class="form-control" />
+                        <label class="form-label" for="form1Example9">Supervisor ID</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" name="CreateCompanyAndManager" class="btn btn-primary btn-block">Submit</button>
+                    <br>
+                    </form>
+
+
                 </div>
                 </div>
             </div>
@@ -84,13 +148,28 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by
-                    default, until the collapse plugin adds the appropriate classes that we use to
-                    style each element. These classes control the overall appearance, as well as the
-                    showing and hiding via CSS transitions. You can modify any of this with custom CSS
-                    or overriding our default variables. It's also worth noting that just about any
-                    HTML can go within the <strong>.accordion-body</strong>, though the transition
-                    does limit overflow.
+                    
+                    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter Details to view Company</h4></div>
+                            <hr>
+
+                        <!-- RegNum input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="RegNum" id="form1Example10" class="form-control" />
+                            <label class="form-label" for="form1Example10">Company Registration Number</label>
+                        </div>
+
+                        <!-- CName input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="CName" id="form1Example11" class="form-control" />
+                            <label class="form-label" for="form1Example11">Company Name</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ViewCompany" class="btn btn-primary btn-block">Search</button>
+                        <br>
+                        </form>
+
                 </div>
                 </div>
             </div>
@@ -114,13 +193,31 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+                        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter Company Registration Number</h4></div>
+                            <hr>
+
+                        <!-- RegNum input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="RegNum" id="form1Example12" class="form-control" />
+                            <label class="form-label" for="form1Example12">Company Registration Number</label>
+                        </div>
+
+                        <div class = "text-center"><h4>Enter the new Company Details</h4></div>
+                            <hr>
+
+                        <!-- CName input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="CName" id="form1Example13" class="form-control" />
+                            <label class="form-label" for="form1Example13">Company Name</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ModifyCompany" class="btn btn-primary btn-block">Submit</button>
+                        <br>
+                        </form>
+
                 </div>
                 </div>
             </div>
@@ -144,13 +241,22 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+                        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter User ID</h4></div>
+                            <hr>
+
+                        <!-- ID input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="ID" id="form1Example14" class="form-control" />
+                            <label class="form-label" for="form1Example14">ID</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ViewUser" class="btn btn-primary btn-block">Search</button>
+                        <br>
+                        </form>
+
                 </div>
                 </div>
             </div>
@@ -174,13 +280,58 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+                        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter User ID</h4></div>
+                            <hr>
+
+                        <!-- ID input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="ID" id="form1Example15" class="form-control" />
+                            <label class="form-label" for="form1Example14">ID</label>
+                        </div>
+
+                        <div class = "text-center"><h4>Enter the new Company Manager Details</h4></div>
+                            <hr>
+
+                            <!-- FName input --> 
+                        <div class="form-outline mb-4">
+                            <input type="text" name="FName" id="form1Example16" class="form-control" />
+                            <label class="form-label" for="form1Example16">Username</label>
+                        </div>                     
+
+                        <!-- BirthDate input --> 
+                        <div class="form-outline mb-4">
+                            <input type="date" name="BirthDate" id="form1Example17" class="form-control" />
+                            <label class="form-label" for="form1Example17">Birth Date</label>
+                        </div>
+
+                        <!-- Sex input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="Sex" id="form1Example18" min="0" max="1" class="form-control" />
+                            <label class="form-label" for="form1Example6">Sex (0 for Male | 1 for Female)</label>
+                        </div>
+
+                        <!-- Username input --> 
+                        <div class="form-outline mb-4">
+                            <input type="text" name="UserName" id="form1Example18" class="form-control" />
+                            <label class="form-label" for="form1Example7">Username</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" name="Pass" id="form1Example19" class="form-control" />
+                            <label class="form-label" for="form1Example19">Password</label>
+                        </div>
+
+                        <!-- SuperID must be set to ID -->                       
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ModifyCompanyManager" class="btn btn-primary btn-block">Submit</button>
+                        <br>
+                        </form>
+
+
                 </div>
                 </div>
             </div>
@@ -204,13 +355,22 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+                        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter Details to view Question</h4></div>
+                            <hr>
+
+                        <!-- Qnum input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="Qnum" id="form1Example20" class="form-control" />
+                            <label class="form-label" for="form1Example20">Question Number</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ViewQuestion" class="btn btn-primary btn-block">Search</button>
+                        <br>
+                        </form>
+
                 </div>
                 </div>
             </div>
@@ -234,13 +394,22 @@
                 data-mdb-parent="#accordionExample"
                 >
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                    until the collapse plugin adds the appropriate classes that we use to style each
-                    element. These classes control the overall appearance, as well as the showing and
-                    hiding via CSS transitions. You can modify any of this with custom CSS or
-                    overriding our default variables. It's also worth noting that just about any HTML
-                    can go within the <strong>.accordion-body</strong>, though the transition does
-                    limit overflow.
+                    
+                        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                            <div class = "text-center"><h4>Enter Details to view Questionnaire</h4></div>
+                            <hr>
+
+                        <!-- Qnum input --> 
+                        <div class="form-outline mb-4">
+                            <input type="number" name="QairNum" id="form1Example21" class="form-control" />
+                            <label class="form-label" for="form1Example21">Questionnaire Number</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" name="ViewQuestionnaire" class="btn btn-primary btn-block">Search</button>
+                        <br>
+                        </form>
+
                 </div>
                 </div>
             </div>
@@ -250,7 +419,7 @@
 
         <!-- Last Button to view the company manager and simple user options -->
         <div class="p-3">
-            <button type="submit" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
+            <button href="ObserverHomePage.php" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
             <br>
             <div class="w-50" style="margin-left: 25.5%;">
             <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
