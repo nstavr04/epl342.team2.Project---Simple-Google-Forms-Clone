@@ -1,3 +1,6 @@
+<?php 
+	session_start(); 
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -419,6 +422,7 @@
 
         <!-- Last Button to view the company manager and simple user options -->
         <div class="p-3">
+            <!-- Buttons do not work -->
             <button href="ObserverHomePage.php" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
             <br>
             <div class="w-50" style="margin-left: 25.5%;">
@@ -434,7 +438,6 @@
 			die('<meta http-equiv="refresh" content="2; url=index.php" />');
 		} 
 	?> 
-
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
