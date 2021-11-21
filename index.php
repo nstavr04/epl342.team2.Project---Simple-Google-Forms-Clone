@@ -66,24 +66,21 @@
   <!-- Username input --> 
   <div class="form-outline mb-4">
     <input type="text" name="userName" id="form1Example2" class="form-control" />
-    <label class="form-label" for="form1Example2">Username</label>
+    <label class="form-label" for="form1Example2">Database Username</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
     <input type="password" name="pswd" id="form1Example2" class="form-control" />
-    <label class="form-label" for="form1Example3">Password</label>
+    <label class="form-label" for="form1Example3">Database Password</label>
   </div>
 
   <!-- Submit button -->
   <button type="submit" name="connect" class="btn btn-primary btn-block">Enter</button>
 </form>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"
-></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
 </body>
 </html>
 

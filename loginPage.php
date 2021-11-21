@@ -8,15 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+	<!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.css" rel="stylesheet"/>
 
     <title>Login Page</title>
   </head>
 
   <body>
-
   <?php
+  // If the db credentials are empty you will get this error message and be redirected back to the index page 
+
 	if (isset($_POST['connect'])) {
-		echo "<br/>Setting session variables!<br/>";
+		echo "<br/><center>Setting session variables...</center><br/>";
 		// collect value of input field
 		$sqlDBname = $_POST['dbName'];
 		$sqlUser = $_POST['userName'];
@@ -43,27 +50,31 @@
 	}
     ?>
 
-<table cellSpacing=0 cellPadding=5 width="100%" border=0>
-	<tr>
-		<td vAlign=top width=170><img height=91 alt=UCY src="images/ucy.jpg" width=94>
-			<h5>
-				<a href="http://www.ucy.ac.cy/">University of Cyprus</a><BR/>
-				<a href="http://www.cs.ucy.ac.cy/">Dept. of Computer Science</a>
-			</h5>
-		</td>
-		<td vAlign=center align=middle><h2>Welcome to the EPL342 project test page</h2></td>
-	</tr>
-    </table>
-	<hr>
-	<a href="q1.php">Query 1 (Simple SQL statement)</a><br>
-	<a href="q2.php">Query 2 (Calling a stored procedure without parameters)</a><br>
-	<form action="q3.php" method="get">
-		Query 3 (Calling a stored procedure with parameters)</a><br>
-		Parameter: <input type="text" name="city" value="Seattle">
-    <input type="submit" name="Query 3">
-	</form>
+<!-- The main page code -->
 
-	<hr>
+    <form action="ObserverHomePage.php" method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+        <div class = "text-center"><h4>Enter your login credentials</h4></div>
+        <hr>
+
+    <!-- Username input --> 
+    <div class="form-outline mb-4">
+        <input type="text" name="LoginUserName" id="form1Example1" class="form-control" />
+        <label class="form-label" for="form1Example1">Username</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+        <input type="password" name="LoginPswd" id="form1Example2" class="form-control" />
+        <label class="form-label" for="form1Example2">Password</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" name="LoginConnect" class="btn btn-primary btn-block">Login</button>
+    <br>
+    <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+    </form>
+
+
 	<?php
 		if(isset($_POST['disconnect'])) { 
 			echo "Clossing session and redirecting to start page"; 
@@ -72,13 +83,8 @@
 			die('<meta http-equiv="refresh" content="2; url=index.php" />');
 		} 
 	?> 
-	
-	<form method="post"> 
-		<input type="submit" name="disconnect" value="Disconnect"/> 
-	</form> 
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
+    </body>
 </html>
