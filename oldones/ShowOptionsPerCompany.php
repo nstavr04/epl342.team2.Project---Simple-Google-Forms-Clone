@@ -1,5 +1,12 @@
 <?php 
-	session_start(); 
+	session_start();
+    // Prevent someone with no access to enter via URL
+    if(!isset($_SESSION['PersonType'])) { 
+        echo '<h2 style="color:red">Access Denied</h2>'; 
+        session_unset();
+        session_destroy();
+        die('<meta http-equiv="refresh" content="2; url=index.php" />');
+        }  
 ?>
 <!doctype html>
 <html lang="en">
@@ -85,17 +92,19 @@
         <div class="p-3">
             <!-- Buttons do not work -->
             <div class="w-50" style="margin-left: 25.5%;">
+            <form method="post">
             <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+            </form>
             </div>
         </div>
 
     <?php
 		if(isset($_POST['disconnect'])) { 
-			echo "Clossing session and redirecting to start page"; 
-			session_unset();
-			session_destroy();
-			die('<meta http-equiv="refresh" content="2; url=index.php" />');
-		} 
+            //echo "Clossing session and redirecting to start page"; 
+            session_unset();
+            session_destroy();
+            die('<meta http-equiv="refresh" content="0; url=index.php" />');
+            } 
 	?> 
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

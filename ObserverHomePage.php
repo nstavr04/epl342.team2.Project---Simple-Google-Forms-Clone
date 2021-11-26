@@ -1,5 +1,12 @@
 <?php 
 	session_start(); 
+        // Prevent someone with no access to enter via URL
+        if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 1) { 
+            echo '<h2 style="color:red">Access Denied</h2>'; 
+            session_unset();
+            session_destroy();
+            die('<meta http-equiv="refresh" content="2; url=index.php" />');
+            } 
 ?>
 <!doctype html>
 <html lang="en">
@@ -419,12 +426,21 @@
         </div>
 
         <br>
+        <br>
+        <br>
+
+        <!-- Titles -->
+        <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
+            <h3>Additional options for specific company</h3>
+            <hr>
+            <br>
+        </div>
 
         <!-- Last Button to view the company manager and simple user options -->
         <div class="p-3">
             <!-- Buttons do not work -->
             <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
-                <div class = "text-center"><h4>Enter company number to view additional show options</h4></div>
+                <div class = "text-center"><h4>Enter company number and click one of the option buttons below</h4></div>
                                 <hr>
 
                             <!-- RegNum input --> 
@@ -432,21 +448,75 @@
                                 <input type="number" name="RegNum" id="form1Example21" class="form-control" />
                                 <label class="form-label" for="form1Example21">Company Registration Number</label>
                             </div> 
-                <button type="submit" name="ViewShowOptions" href="ObserverHomePage.php" class="btn btn-primary btn-block">View Company Manager and Simple User Options</button>
+                <button type="submit" name="ViewShowOptions" href="ObserverHomePage.php" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+        <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
+
+        <div class="p-3">
+            <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+            <br>
+            <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
+            <br>
+            <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
+            <br>
+            <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
+            <br>
+            <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
+            <br>
+            <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
+            <br>
+            <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
+            <br>
+            <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button>
+            <br>
+            <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+            <br>
+
+            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                <div class = "text-center"><h4>Show k least included questions in questionnaires</h4></div>
+                                <hr>
+
+                            <!-- k parameter input --> 
+                            <div class="form-outline mb-4">
+                                <input type="number" name="kNumber" id="form1Example21" class="form-control" />
+                                <label class="form-label" for="form1Example21">Enter k parameter</label>
+                            </div> 
+                <button type="submit" name="kParameterQuestion" class="btn btn-primary btn-block">Search</button>
             </form>
 
+            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                <div class = "text-center"><h4>Show total number of questions in a questionnaire including its child questionnaires</h4></div>
+                                <hr>
+
+                            <!-- X parameter input --> 
+                            <div class="form-outline mb-4">
+                                <input type="number" name="xNumber" id="form1Example21" class="form-control" />
+                                <label class="form-label" for="form1Example21">Enter Parent Questionnaire Number ID</label>
+                            </div> 
+                <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block">Search</button>
+            </form>
+
+            </div>
+
             <br>
-            <div class="w-50" style="margin-left: 25.5%;">
-            <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+            <div class="w-50" style="margin-left: 25%;">
+                <form method="post"> 
+                <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+                </form>
+                <br>
             </div>
         </div>
 
+
+
+
     <?php
 		if(isset($_POST['disconnect'])) { 
-			echo "Clossing session and redirecting to start page"; 
+			//echo "Clossing session and redirecting to start page"; 
 			session_unset();
 			session_destroy();
-			die('<meta http-equiv="refresh" content="2; url=index.php" />');
+			die('<meta http-equiv="refresh" content="0; url=index.php" />');
 		} 
 	?> 
   
