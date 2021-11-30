@@ -1,12 +1,165 @@
 <?php 
 	session_start(); 
+    include 'dbsqlconnection.php';
         // Prevent someone with no access to enter via URL
-        if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 1) { 
+        if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 2) { 
             echo '<h2 style="color:red">Access Denied</h2>'; 
             session_unset();
             session_destroy();
             die('<meta http-equiv="refresh" content="2; url=index.php" />');
-            } 
+            }
+
+            
+            // assuming that Q1Fname Wont be NULL on submit, and ALSO it wont have the value of Q1FnameDONE
+            if (isset($_POST['Q1FName']) && $_POST['Q1FName']!='Q1FnameDONE'){
+                echo 'inside first query if<br>';
+
+
+
+
+
+            	//Read Stored proc with param
+	            $tsql = "{call insertCompanyAndDE(?, ?, ?, ?, ?, ?, ? ,? ,? ,?, ?)}";  
+	            // echo "Executing query: " . $tsql . ") with parameter " . $_GET["city"] . "<br/>";
+
+	            // Getting parameter from the http call and setting it for the SQL call
+	            $params = array(  
+					            array($_SESSION['NextComID'], SQLSRV_PARAM_IN),
+                                array($_POST["Q1CName"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1RegNum"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1FName"], SQLSRV_PARAM_IN),
+                                array($_SESSION['NextEmpID'], SQLSRV_PARAM_IN),
+                                // array($_POST["Q1BirthDate"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1Sex"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1UserName"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1Pass"], SQLSRV_PARAM_IN),
+                                array($_SESSION['NextEmpID'], SQLSRV_PARAM_IN),
+                                array($_POST["Q1LName"], SQLSRV_PARAM_IN),
+                                array($_POST["Q1IDCard"], SQLSRV_PARAM_IN)
+					            );  
+
+                $getResults= sqlsrv_query($conn, $tsql, $params);
+                echo ("Results:<br/>");
+                if ($getResults == FALSE)
+                    die(FormatErrors(sqlsrv_errors()));
+
+                PrintResultSet($getResults);
+                // Free query  resources. 
+                sqlsrv_free_stmt($getResults);
+
+                $time_end = microtime(true);
+                $execution_time = round((($time_end - $time_start)*1000),2);
+                echo 'QueryTime: '.$execution_time.' ms';
+    
+
+
+                $_POST['Q1FName']='Q1FnameDONE';
+            }
+
+            $conn = $_SESSION['dbconnection'];
+
+            $query = "SELECT TOP (1) CompanyID FROM COMPANY ORDER BY (CompanyID)DESC";
+        
+            $result = sqlsrv_query($conn,$query);
+            $_SESSION['NextComID']=PrintResultCol($result, 1);
+            $_SESSION['NextComID']++;
+            // echo $_SESSION['NextComID'];
+
+
+
+            $query = "SELECT TOP (1) EmployeeID FROM PERSON ORDER BY (EmployeeID)DESC";
+        
+            $result = sqlsrv_query($conn,$query);
+            $_SESSION['NextEmpID']=PrintResultCol($result, 1);
+            $_SESSION['NextEmpID']++;
+            // echo $_SESSION['NextEmpID'];
+
+
+
+
+
+            $time_start = microtime(true);
+
+            //Read Stored proc with param
+            $tsql = "{call insertCompanyAndDE2(?, ?, ?)}";  
+            // echo "Executing query: " . $tsql . ") with parameter " . $_GET["city"] . "<br/>";
+            $t1=8;
+            $t2='test1234';
+            $t3=8;
+            // Getting parameter from the http call and setting it for the SQL call
+            $params = array(  
+                            array($t1, SQLSRV_PARAM_IN),
+                            array($t2, SQLSRV_PARAM_IN),
+                            array($t3, SQLSRV_PARAM_IN)
+                            );  
+
+            $getResults= sqlsrv_query($conn, $tsql, $params);
+            echo ("Results:<br/>");
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            // Free query  resources. 
+            sqlsrv_free_stmt($getResults);
+
+            $time_end = microtime(true);
+            $execution_time = round((($time_end - $time_start)*1000),2);
+            echo 'QueryTime: '.$execution_time.' ms';
+
+
+
+            
+            function PrintResultCol($resultSet,$column)
+            {
+                $cnt=0;
+              while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
+                foreach ($row as $col) {
+                    $cnt++;
+                    if($cnt == $column)
+                        return (is_null($col) ? "Null" : $col);
+                }
+                $cnt=0;
+              }
+            }
+
+            function PrintResultSet ($resultSet) {
+                echo ("<table><tr >");
+                
+                foreach( sqlsrv_field_metadata($resultSet) as $fieldMetadata ) {
+                    echo ("<th>");
+                    echo $fieldMetadata["Name"];
+                    echo ("</th>");
+                }
+                echo ("</tr>");
+        
+                while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
+                    echo ("<tr>");
+                    foreach($row as $col){
+                        echo ("<td>");
+                        echo (is_null($col) ? "Null" : $col);
+                        echo ("</td>");
+                    }
+                    echo ("</tr>");
+                }
+                echo ("</table>");
+            }
+
+            function FormatErrors( $errors ){
+                /* Display errors. */
+                echo "Error information: ";
+        
+                foreach ( $errors as $error )
+                {
+                    echo "SQLSTATE: ".$error['SQLSTATE']."";
+                    echo "Code: ".$error['code']."";
+                    echo "Message: ".$error['message']."";
+                }
+            }
+
+
+
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -63,23 +216,25 @@
                 aria-labelledby="headingOne"
                 data-mdb-parent="#accordionExample"
                 >
+
+                <!-- THIS IS THE FIRST QUERY -->
                 <div class="accordion-body">
                     
 
                     <!-- The first form for adding company -->
-                    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;"> 
+                    <form method="POST" class="w-25 p-3" style="margin-left: 37.5%;"> 
                         <div class = "text-center"><h4>Enter Company Details</h4></div>
                         <hr>
 
                     <!-- RegNum input --> 
                     <div class="form-outline mb-4">
-                        <input type="number" name="RegNum" id="form1Example1" class="form-control" />
-                        <label class="form-label" for="form1Example1">Company Registration Number</label>
+                        <input type="number" name="Q1RegNum" id="form1Example1" class="form-control" />
+                        <label class="form-label" for="form1Example1">Registration Number</label>
                     </div>
 
                     <!-- CName input -->
                     <div class="form-outline mb-4">
-                        <input type="text" name="CName" id="form1Example2" class="form-control" />
+                        <input type="text" name="Q1CName" id="form1Example2" class="form-control" />
                         <label class="form-label" for="form1Example2">Company Name</label>
                     </div>
 
@@ -89,44 +244,44 @@
 
                     <!-- FName input --> 
                     <div class="form-outline mb-4">
-                        <input type="text" name="FName" id="form1Example3" class="form-control" />
-                        <label class="form-label" for="form1Example3">Username</label>
+                        <input type="text" name="Q1FName" id="form1Example3" class="form-control" />
+                        <label class="form-label" for="form1Example3">Fname</label>
                     </div>
 
-                    <!-- ID input --> 
+                    <!-- LName input --> 
+                        <div class="form-outline mb-4">
+                        <input type="text" name="Q1LName" id="form1Example3" class="form-control" />
+                        <label class="form-label" for="form1Example3">Lname</label>
+                    </div>
+
+                    <!-- IDCard input --> 
                     <div class="form-outline mb-4">
-                        <input type="number" name="ID" id="form1Example4" class="form-control" />
-                        <label class="form-label" for="form1Example4">ID</label>
+                        <input type="number" name="Q1IDCard" id="form1Example4" class="form-control" />
+                        <label class="form-label" for="form1Example4">IDCard</label>
                     </div>
 
                     <!-- BirthDate input --> 
                     <div class="form-outline mb-4">
-                        <input type="date" name="BirthDate" id="form1Example5" class="form-control" />
+                        <input type="date" name="Q1BirthDate" id="form1Example5" class="form-control" />
                         <label class="form-label" for="form1Example5">Birth Date</label>
                     </div>
 
                     <!-- Sex input --> 
                     <div class="form-outline mb-4">
-                        <input type="number" name="Sex" id="form1Example6" min="0" max="1" class="form-control" />
-                        <label class="form-label" for="form1Example6">Sex (0 for Male | 1 for Female)</label>
+                        <input type="number" name="Q1Sex" id="form1Example6" min="0" max="1" class="form-control" />
+                        <label class="form-label" for="form1Example6">Sex (1:M|0:F)</label>
                     </div>
 
                     <!-- Username input --> 
                     <div class="form-outline mb-4">
-                        <input type="text" name="UserName" id="form1Example7" class="form-control" />
+                        <input type="text" name="Q1UserName" id="form1Example7" class="form-control" />
                         <label class="form-label" for="form1Example7">Username</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" name="Pass" id="form1Example8" class="form-control" />
+                        <input type="password" name="Q1Pass" id="form1Example8" class="form-control" />
                         <label class="form-label" for="form1Example8">Password</label>
-                    </div>
-
-                    <!-- SuperID input -->
-                    <div class="form-outline mb-4">
-                        <input type="number" name="SuperID" id="form1Example9" class="form-control" />
-                        <label class="form-label" for="form1Example9">Supervisor ID</label>
                     </div>
 
                     <!-- Submit button -->
