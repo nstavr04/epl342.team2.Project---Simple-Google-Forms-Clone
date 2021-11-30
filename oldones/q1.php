@@ -101,7 +101,7 @@ $counter2=1;
 // Add with OR for the other 2 dates in other tables
 if ($fieldMetadata["Name"] == "ModifiedDate")
 	$flag=1;		
-if ($fieldMetadata["Name"] != "ModifiedDate" && $flag=0)
+if ($fieldMetadata["Name"] != "ModifiedDate" && $flag==0)
 	$counter++;
 
 			echo ("<th>");
