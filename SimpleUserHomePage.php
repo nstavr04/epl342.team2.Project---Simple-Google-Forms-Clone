@@ -1,11 +1,15 @@
 <?php 
 	session_start(); 
     // Prevent someone with no access to enter via URL
-    if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 3) { 
+    if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) { 
+        // print_r($_SESSION['USERINFO']);
+        // $temp=$_SESSION['USERINFO'];
         echo '<h2 style="color:red">Access Denied</h2>'; 
+        // echo $temp;
         session_unset();
         session_destroy();
-        die('<meta http-equiv="refresh" content="2; url=index.php" />');
+        die('<meta http-equiv="refresh" content="62; url=index.php" />');
+        // echo $temp;
         } 
 ?>
 <!doctype html>

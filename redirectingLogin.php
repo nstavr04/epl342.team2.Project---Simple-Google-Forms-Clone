@@ -10,28 +10,28 @@
     
         $conn = $_SESSION['dbconnection'];
 
-        $LoginQuery = "SELECT UserName,Pass,ID,RegNum,PersonType FROM PERSON WHERE UserName='$LoginUserName'
-        AND Pass='$LoginPswd' ";
+        $LoginQuery = "SELECT UserName,Pass,EmployeeID,PersonType,CompanyID FROM PERSON WHERE UserName='$LoginUserName'
+        AND Pass='$LoginPswd'";
     
         $LoginResult = sqlsrv_query($conn,$LoginQuery,array(),array("Scrollable"=>'keyset'));
         $row = sqlsrv_num_rows($LoginResult);
-
+        
         if($row == 1){
             //echo "<h5>Redirecting... </h5>";
             CheckResult($LoginResult);
             // 1 for Observer, 2 for Company Manager, 3 for Simple User
-            if($_SESSION['PersonType'] == 1){     
+            if($_SESSION['PersonType'] == 2){     
                 
                 echo "<script type='text/javascript'>";
                 echo "window.location.href = 'ObserverHomePage.php'";
                 echo "</script>";
             }
-            else if($_SESSION['PersonType'] == 2){
+            else if($_SESSION['PersonType'] == 1){
                 echo "<script type='text/javascript'>";
                 echo "window.location.href = 'CompanyManagerHomePage.php'";
                 echo "</script>";
             }
-            else if($_SESSION['PersonType'] == 3){
+            else if($_SESSION['PersonType'] == 1){
                 echo "<script type='text/javascript'>";
                 echo "window.location.href = 'SimpleUserHomePage.php'";
                 echo "</script>";
@@ -41,6 +41,7 @@
                 echo "<script type='text/javascript'>";
                 echo "window.location.href = 'index.php'";
                 echo "</script>";
+                echo 'SHOULD NEVER BE HERE. redirectingLogin line 44';
             }
         }
         else{
@@ -85,10 +86,10 @@ function CheckResult($resultSet)
                     $cnt++;
                   // numbers are based on the query above
                 if($cnt==3)
-                  $_SESSION['ID'] = $col;
-                if($cnt==4)
-                  $_SESSION['RegNum'] = $col;
+                  $_SESSION['EmployeeID'] = $col;
                 if($cnt==5)
+                  $_SESSION['CompanyID'] = $col;
+                if($cnt==4)
                   $_SESSION['PersonType'] = $col;  
       //echo (is_null($col) ? "Null" : $col);
     }

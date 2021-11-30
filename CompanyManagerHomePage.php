@@ -1,7 +1,7 @@
 <?php 
 	session_start(); 
         // Prevent someone with no access to enter via URL
-        if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 2) { 
+        if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 1) { 
             echo '<h2 style="color:red">Access Denied</h2>'; 
             session_unset();
             session_destroy();

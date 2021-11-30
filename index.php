@@ -1,6 +1,6 @@
 <?php 
 	session_start(); 
-	session_unset();
+	// session_unset();
 	include 'dbsqlconnection.php';
 ?>
 <!doctype html>
@@ -77,17 +77,6 @@
     <br>
     </form>
 
-	
-
-	<?php
-
-		// if(isset($_POST['disconnect'])) { 
-		// 	echo "Clossing session and redirecting to start page"; 
-		// 	session_unset();
-		// 	session_destroy();
-		// 	die('<meta http-equiv="refresh" content="2; url=index.php" />');
-		// } 
-	?> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.0/mdb.min.js"></script>
