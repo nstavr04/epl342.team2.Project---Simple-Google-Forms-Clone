@@ -621,9 +621,23 @@ function PrintResultSetDate($resultSet, $datevar)
 
     <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
 
-    <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button>
-
     <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+    </form>
+
+    <!-- <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button> -->
+
+    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+        <div class="text-center">
+            <h4>Questionnaires that include the questions of the questionnaire below</h4>
+        </div>
+        <hr>
+
+        <!-- qID parameter input -->
+        <div class="form-outline mb-4">
+            <input type="number" name="qIDNumber" id="form1Example21" class="form-control" />
+            <label class="form-label" for="form1Example21">Enter questionnaire ID</label>
+        </div>
+        <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Search</button>
     </form>
 
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
@@ -664,10 +678,234 @@ function PrintResultSetDate($resultSet, $datevar)
     </div>
 
     <?php
+        //Q7
         if(isset($_POST['QairesReport'])){
             $tsql = "{call QuestionnaireReport(?)}";
 
             $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q8
+        if(isset($_POST['PopularQuestions'])){
+            $tsql = "{call popularQuestions(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q9 NOT DONE
+        if(isset($_POST['QnumPerQaire'])){
+            $tsql = "{call questionsNumberPerQair(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q10
+        if(isset($_POST['AvgQuestions'])){
+            $tsql = "{call averageQuestionsPerCompany(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q11
+        if(isset($_POST['BigQaires'])){
+            $tsql = "{call bigQuestionnairesPerCompany(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q12
+        if(isset($_POST['SmallQaires'])){
+            $tsql = "{call smallestQuestionnaires(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q13
+        if(isset($_POST['CommonQuestionsExactly'])){
+            $tsql = "{call QairesWithSameQuestionsExactly(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q14
+        if(isset($_POST['CommonQuestionsAtLeast'])){
+            $tsql = "{call SubsetQairsOfAQair(?,?)}";
+
+            $params = array(
+                array((int)$_POST['qIDNumber']),
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q15
+        if(isset($_POST['kParameterQuestion'])){
+            $tsql = "{call kQuestionsLeastAppeared(?,?)}";
+
+            $params = array(
+                array((int)$_POST['kNumber']),
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q16
+        if(isset($_POST['QuestionsInAllQaires'])){
+            $tsql = "{call QuestionsInAllQuestionnaires(?)}";
+
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
+
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+
+        //Q17 NOT DONE
+        if(isset($_POST['XParameterQuestion'])){
+            $tsql = "{call DerivativesOfAQuestionnaire(?,?)}";
+
+            $params = array(
+                array((int)$_POST['xNumber']),
                 array((int)$_SESSION['CompanyID'])
             );
 
