@@ -31,7 +31,7 @@
                 echo "window.location.href = 'CompanyManagerHomePage.php'";
                 echo "</script>";
             }
-            else if($_SESSION['PersonType'] == 1){
+            else if($_SESSION['PersonType'] == 0){
                 echo "<script type='text/javascript'>";
                 echo "window.location.href = 'SimpleUserHomePage.php'";
                 echo "</script>";

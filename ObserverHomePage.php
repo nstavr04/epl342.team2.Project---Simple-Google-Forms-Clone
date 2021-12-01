@@ -590,15 +590,24 @@ function PrintResultSetDate($resultSet, $datevar)
 
             <!-- RegNum input -->
             <div class="form-outline mb-4">
-                <input type="number" name="RegNum" id="form1Example21" class="form-control" />
+                <input type="number" name="VRegNum" id="form1Example21" class="form-control" />
                 <label class="form-label" for="form1Example21">Company Registration Number</label>
             </div>
             <button type="submit" name="ViewShowOptions" href="ObserverHomePage.php" class="btn btn-primary btn-block">Submit</button>
         </form>
+
+        <?php
+        // Get the company id we want to view options for to use in the sprocs below
+        if(isset($_POST['ViewShowOptions'])){
+            $_SESSION['CompanyID'] = $_POST['VRegNum'];
+        }
+        ?>
+
     </div>
     <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
-
+    <form method="POST">
     <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+    
 
     <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
 
@@ -615,7 +624,7 @@ function PrintResultSetDate($resultSet, $datevar)
     <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button>
 
     <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
-
+    </form>
 
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
@@ -642,22 +651,41 @@ function PrintResultSetDate($resultSet, $datevar)
             <input type="number" name="xNumber" id="form1Example21" class="form-control" />
             <label class="form-label" for="form1Example21">Enter Parent Questionnaire Number ID</label>
         </div>
-        <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block">Search</button>
+        <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block mb-3">Search</button>
     </form>
 
     </div>
 
-    <br>
     <div class="w-50" style="margin-left: 25%;">
         <form method="post">
-            <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+            <button type="submit" name="disconnect" class="btn btn-primary btn-block mb-3">Disconnect</button>
         </form>
-        <br>
     </div>
     </div>
 
+    <?php
+        if(isset($_POST['QairesReport'])){
+            $tsql = "{call QuestionnaireReport(?)}";
 
+            $params = array(
+                array((int)$_SESSION['CompanyID'])
+            );
 
+            $time_start = microtime(true);
+            $getResults = sqlsrv_query($conn, $tsql, $params);
+            $time_end = microtime(true);
+
+            if ($getResults == FALSE)
+                die(FormatErrors(sqlsrv_errors()));
+
+            PrintResultSet($getResults);
+            sqlsrv_free_stmt($getResults);
+
+            $execution_time = round((($time_end - $time_start) * 1000), 2);
+            echo 'QueryTime: ' . $execution_time . ' ms';
+        }
+    ?>
+    
 
     <?php
     if (isset($_POST['disconnect'])) {
