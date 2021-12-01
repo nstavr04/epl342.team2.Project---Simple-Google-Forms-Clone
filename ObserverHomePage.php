@@ -139,6 +139,8 @@ function PrintResultSet($resultSet)
         }
         echo ("</tr>");
     }
+    echo ("</tbody></table>");
+    echo '</div>';
 }
 
 // Print sql errors
@@ -469,35 +471,66 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
-                <div class="accordion-body">
+                <div class="accordion-body">                              
 
                     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
                         <div class="text-center">
-                            <h4>Enter Company Registration Number</h4>
+                            <h4>Enter Company ID Number</h4>
                         </div>
-                        <hr>
+                        
 
                         <!-- RegNum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="RegNum" id="form1Example12" class="form-control" />
-                            <label class="form-label" for="form1Example12">Company Registration Number</label>
+                            <input type="number" name="Q2CompanyID" id="form1Example12" class="form-control" />
+                            <label class="form-label" for="form1Example12">Company ID Number</label>
                         </div>
 
                         <div class="text-center">
-                            <h4>Enter the new Company Details</h4>
+                            <h4>Enter the new Company Name</h4>
                         </div>
-                        <hr>
+                        
 
                         <!-- CName input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="CName" id="form1Example13" class="form-control" />
+                            <input type="text" name="Q2CName" id="form1Example13" class="form-control" />
                             <label class="form-label" for="form1Example13">Company Name</label>
                         </div>
 
                         <!-- Submit button -->
                         <button type="submit" name="ModifyCompany" class="btn btn-primary btn-block">Submit</button>
-                        <br>
+                        
                     </form>
+
+                    <?php
+
+                                if(isset($_POST['ModifyCompany'])){
+
+                                    //Read Stored proc with param
+                                    $tsql = "{call changeCompanyDetails(?,?)}";
+
+                                    // Getting parameter from the http call and setting it for the SQL call
+                                    $params = array(
+                                        array((int)$_POST['Q2CompanyID']),
+                                        array($_POST['Q2CName'])
+                                    );
+
+                                    $time_start = microtime(true);
+                                    $getResults = sqlsrv_query($conn, $tsql, $params);
+                                    $time_end = microtime(true);
+                                    //echo ("Results:<br/>");
+                                    if ($getResults == FALSE)
+                                        die(FormatErrors(sqlsrv_errors()));
+
+                                    PrintResultSet($getResults);
+                                    // Free query  resources. 
+                                    sqlsrv_free_stmt($getResults);
+
+                                    $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                    echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                }
+
+                                ?>
 
                 </div>
             </div>
@@ -515,13 +548,13 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
                     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
                         <div class="text-center">
-                            <h4>Enter User ID</h4>
+                            <h4>Enter Employee ID</h4>
                         </div>
                         <hr>
 
                         <!-- ID input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="ID" id="form1Example14" class="form-control" />
+                            <input type="number" name="Q4ID" id="form1Example14" class="form-control" />
                             <label class="form-label" for="form1Example14">ID</label>
                         </div>
 
@@ -529,6 +562,36 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
                         <button type="submit" name="ViewUser" class="btn btn-primary btn-block">Search</button>
                         <br>
                     </form>
+
+                    <?php
+
+                                if(isset($_POST['ViewUser'])){
+
+                                    //Read Stored proc with param
+                                    $tsql = "{call showPersonDetails(?)}";
+
+                                    // Getting parameter from the http call and setting it for the SQL call
+                                    $params = array(
+                                        array($_POST['Q4ID'])
+                                    );
+
+                                    $time_start = microtime(true);
+                                    $getResults = sqlsrv_query($conn, $tsql, $params);
+                                    $time_end = microtime(true);
+                                    //echo ("Results:<br/>");
+                                    if ($getResults == FALSE)
+                                        die(FormatErrors(sqlsrv_errors()));
+
+                                    PrintResultSetDate($getResults,'BirthDate');
+                                    // Free query  resources. 
+                                    sqlsrv_free_stmt($getResults);
+
+                                    $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                    echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                }
+
+                                ?>
 
                 </div>
             </div>
@@ -546,13 +609,13 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
                     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
                         <div class="text-center">
-                            <h4>Enter User ID</h4>
+                            <h4>Enter Company Manager Employee ID</h4>
                         </div>
                         <hr>
 
                         <!-- ID input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="ID" id="form1Example15" class="form-control" />
+                            <input type="number" name="Q22ID" id="form1Example15" class="form-control" />
                             <label class="form-label" for="form1Example14">ID</label>
                         </div>
 
@@ -563,41 +626,61 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
                         <!-- FName input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="FName" id="form1Example16" class="form-control" />
-                            <label class="form-label" for="form1Example16">Username</label>
+                            <input type="text" name="Q22FName" id="form1Example16" class="form-control" />
+                            <label class="form-label" for="form1Example16">First Name</label>
                         </div>
 
-                        <!-- BirthDate input -->
+                        <!-- LName input -->
                         <div class="form-outline mb-4">
-                            <input type="date" name="BirthDate" id="form1Example17" class="form-control" />
-                            <label class="form-label" for="form1Example17">Birth Date</label>
-                        </div>
-
-                        <!-- Sex input -->
-                        <div class="form-outline mb-4">
-                            <input type="number" name="Sex" id="form1Example18" min="0" max="1" class="form-control" />
-                            <label class="form-label" for="form1Example6">Sex (0 for Male | 1 for Female)</label>
-                        </div>
-
-                        <!-- Username input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" name="UserName" id="form1Example18" class="form-control" />
-                            <label class="form-label" for="form1Example7">Username</label>
+                            <input type="text" name="Q22LName" id="form1Example16" class="form-control" />
+                            <label class="form-label" for="form1Example16">Last Name</label>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" name="Pass" id="form1Example19" class="form-control" />
+                            <input type="password" name="Q22Pass" id="form1Example19" class="form-control" />
                             <label class="form-label" for="form1Example19">Password</label>
                         </div>
 
-                        <!-- SuperID must be set to ID -->
+                        <!-- SuperID must be set to Employee ID -->
 
                         <!-- Submit button -->
                         <button type="submit" name="ModifyCompanyManager" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
 
+                    <?php
+
+                                if(isset($_POST['ModifyCompanyManager'])){
+
+                                    //Read Stored proc with param
+                                    $tsql = "{call changeDEDetails(?,?,?,?)}";
+
+                                    // Getting parameter from the http call and setting it for the SQL call
+                                    $params = array(
+                                        array($_POST['Q22FName']),
+                                        array($_POST['Q22LName']),
+                                        array($_POST['Q22ID']),
+                                        array($_POST['Q22Pass'])
+                                    );
+
+                                    $time_start = microtime(true);
+                                    $getResults = sqlsrv_query($conn, $tsql, $params);
+                                    $time_end = microtime(true);
+                                    //echo ("Results:<br/>");
+                                    if ($getResults == FALSE)
+                                        die(FormatErrors(sqlsrv_errors()));
+
+                                    PrintResultSet($getResults);
+                                    // Free query  resources. 
+                                    sqlsrv_free_stmt($getResults);
+
+                                    $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                    echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                }
+
+                                ?>
 
                 </div>
             </div>
@@ -621,7 +704,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="Qnum" id="form1Example20" class="form-control" />
+                            <input type="number" name="A6Qnum" id="form1Example20" class="form-control" />
                             <label class="form-label" for="form1Example20">Question Number</label>
                         </div>
 
@@ -629,6 +712,82 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
                         <button type="submit" name="ViewQuestion" class="btn btn-primary btn-block">Search</button>
                         <br>
                     </form>
+
+                    <?php
+                    if(isset($_POST['ViewQuestion'])){
+
+                        //Read Stored proc with param
+                        $tsql = "{call displayQuestionnaireMCQQ(?)}";
+
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_POST['A6Qnum'])
+                        );
+
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+
+                        PrintResultSet($getResults);
+                        // Free query  resources. 
+                        sqlsrv_free_stmt($getResults);
+
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+
+
+                        //Read Stored proc with param
+                        $tsql = "{call displayQuestionnaireNumericalQ(?)}";
+
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_POST['A6Qnum'])
+                        );
+
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+
+                        PrintResultSet($getResults);
+                        // Free query  resources. 
+                        sqlsrv_free_stmt($getResults);
+
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+
+
+
+                        //Read Stored proc with param
+                        $tsql = "{call displayQuestionnaireFreeTextQ(?)}";
+
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_POST['A6Qnum'])
+                        );
+
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+
+                        PrintResultSet($getResults);
+                        // Free query  resources. 
+                        sqlsrv_free_stmt($getResults);
+
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+
+                        }
+
+                        ?>
 
                 </div>
             </div>
@@ -648,58 +807,91 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
                         <div class="text-center">
                             <h4>Enter Details to view Questionnaire</h4>
                         </div>
-                        <hr>
+                        
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="QairNum" id="form1Example21" class="form-control" />
+                            <input type="number" name="A7QairNum" id="form1Example21" class="form-control" />
                             <label class="form-label" for="form1Example21">Questionnaire Number</label>
                         </div>
 
                         <!-- Submit button -->
                         <button type="submit" name="ViewQuestionnaire" class="btn btn-primary btn-block">Search</button>
-                        <br>
+                        
                     </form>
+
+                    <?php
+
+                                if(isset($_POST['ViewQuestionnaire'])){
+
+                                    //Read Stored proc with param
+                                    $tsql = "{call showQuestionaireDetails(?)}";
+
+                                    // Getting parameter from the http call and setting it for the SQL call
+                                    $params = array(
+                                        array((int)$_POST['A7QairNum'])
+                                    );
+
+                                    $time_start = microtime(true);
+                                    $getResults = sqlsrv_query($conn, $tsql, $params);
+                                    $time_end = microtime(true);
+                                    //echo ("Results:<br/>");
+                                    if ($getResults == FALSE)
+                                        die(FormatErrors(sqlsrv_errors()));
+
+                                    PrintResultSet($getResults);
+                                    // Free query  resources. 
+                                    sqlsrv_free_stmt($getResults);
+
+                                    $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                    echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                }
+
+                                ?>
 
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- <br>
     <br>
-    <br>
-    <br>
+    <br> -->
 
     <!-- Titles METAVATIKI STADIO EPILOGON-KOUMPION-->
     <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
         <h3>Additional options for specific company</h3>
-        <hr>
-        <br>
     </div>
 
+        <?php
+        // Get the company id we want to view options for to use in the sprocs below
+            if (isset($_POST['ViewShowOptions'])) {
+                $_SESSION['CompanyID'] = $_POST['VRegNum'];
+            }
+        
+            if(isset($_SESSION['CompanyID'])){
+                echo '<h5 class="text-center text-danger">Currently Selected Company ID is '.$_SESSION['CompanyID'].'</h5>';
+            }
+        ?>
+
     <!-- Last Button to view the company manager and simple user options -->
-    <div class="p-3">
+    <div>
         <!-- Buttons do not work -->
-        <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+        <form method="post" class="w-25 p-5" style="margin-left: 37.5%;">
             <div class="text-center">
                 <h4>Enter company number and click one of the option buttons below</h4>
             </div>
             <hr>
 
-            <!-- RegNum input -->
+            <!-- CompanyID input -->
             <div class="form-outline mb-4">
                 <input type="number" name="VRegNum" id="form1Example21" class="form-control" />
-                <label class="form-label" for="form1Example21">Company Registration Number</label>
+                <label class="form-label" for="form1Example21">Company ID Number</label>
             </div>
             <button type="submit" name="ViewShowOptions" href="ObserverHomePage.php" class="btn btn-primary btn-block">Submit</button>
         </form>
 
-        <?php
-        // Get the company id we want to view options for to use in the sprocs below
-        if (isset($_POST['ViewShowOptions'])) {
-            $_SESSION['CompanyID'] = $_POST['VRegNum'];
-        }
-        ?>
 
     </div>
 
