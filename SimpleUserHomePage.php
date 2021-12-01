@@ -8,7 +8,7 @@
         // echo $temp;
         session_unset();
         session_destroy();
-        die('<meta http-equiv="refresh" content="62; url=index.php" />');
+        die('<meta http-equiv="refresh" content="2; url=index.php" />');
         // echo $temp;
         } 
 ?>

@@ -1,5 +1,7 @@
 <?php 
 	session_start(); 
+    include 'dbsqlconnection.php';
+    include 'functions.php';
         // Prevent someone with no access to enter via URL
         if(!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 1) { 
             echo '<h2 style="color:red">Access Denied</h2>'; 
@@ -7,6 +9,13 @@
             session_destroy();
             die('<meta http-equiv="refresh" content="2; url=index.php" />');
             } 
+
+        $query = "SELECT TOP (1) EmployeeID FROM PERSON ORDER BY (EmployeeID)DESC";
+
+        $result = sqlsrv_query($conn, $query);
+        $_SESSION['NextEmpID'] = PrintResultCol($result, 1);
+        $_SESSION['NextEmpID']++;
+        // echo $_SESSION['NextEmpID'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,10 +48,51 @@
         <br>
     </div>
 
-
         <!-- Accordion with options and forms in it -->
         
         <div class="accordion p-3" id="accordion">
+
+
+        <?php
+
+                    if(isset($_POST['CreateSimpleUser'])){
+
+                        //Read Stored proc with param
+                        $tsql = "{call insertNewAX(?,?,?,?,?,?,?,?,?,?)}";
+
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_SESSION['CompanyID']),
+                            array($_POST['A1FName']),
+                            array((int)$_SESSION['NextEmpID']),
+                            array($_POST['A1BirthDate']),
+                            array((int)$_POST['A1Sex']),
+                            array($_POST['A1UserName']),
+                            array($_POST['A1Pass']),
+                            // supervisor id
+                            array((int)$_SESSION['EmployeeID']),
+                            array((int)$_POST['A1IDCard']),
+                            array($_POST['A1LName'])
+                        );
+
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+
+                        PrintResultSet($getResults);
+                        // Free query  resources. 
+                        sqlsrv_free_stmt($getResults);
+
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+
+                    }
+
+
+            ?>
 
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -74,44 +124,44 @@
 
             <!-- FName input --> 
             <div class="form-outline mb-4">
-                <input type="text" name="FName" id="form1Example1" class="form-control" />
-                <label class="form-label" for="form1Example1">Username</label>
+                <input type="text" name="A1FName" id="form1Example1" class="form-control" />
+                <label class="form-label" for="form1Example1">First Name</label>
             </div>
 
-            <!-- ID input --> 
-            <div class="form-outline mb-4">
-                <input type="number" name="ID" id="form1Example2" class="form-control" />
-                <label class="form-label" for="form1Example2">ID</label>
+             <!-- LName input --> 
+             <div class="form-outline mb-4">
+                <input type="text" name="A1LName" id="form1Example1" class="form-control" />
+                <label class="form-label" for="form1Example1">Last Name</label>
             </div>
 
             <!-- BirthDate input --> 
             <div class="form-outline mb-4">
-                <input type="date" name="BirthDate" id="form1Example3" class="form-control" />
+                <input type="date" name="A1BirthDate" id="form1Example3" class="form-control" />
                 <label class="form-label" for="form1Example3">Birth Date</label>
             </div>
 
             <!-- Sex input --> 
             <div class="form-outline mb-4">
-                <input type="number" name="Sex" id="form1Example4" min="0" max="1" class="form-control" />
-                <label class="form-label" for="form1Example4">Sex (0 for Male | 1 for Female)</label>
+                <input type="number" name="A1Sex" id="form1Example4" min="0" max="1" class="form-control" />
+                <label class="form-label" for="form1Example4">Sex (1 for Male | 0 for Female)</label>
             </div>
 
             <!-- Username input --> 
             <div class="form-outline mb-4">
-                <input type="text" name="UserName" id="form1Example5" class="form-control" />
+                <input type="text" name="A1UserName" id="form1Example5" class="form-control" />
                 <label class="form-label" for="form1Example5">Username</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <input type="password" name="Pass" id="form1Example6" class="form-control" />
+                <input type="password" name="A1Pass" id="form1Example6" class="form-control" />
                 <label class="form-label" for="form1Example6">Password</label>
             </div>
 
-            <!-- SuperID input -->
+            <!-- IDCard input -->
             <div class="form-outline mb-4">
-                <input type="number" name="SuperID" id="form1Example7" class="form-control" />
-                <label class="form-label" for="form1Example7">Supervisor ID</label>
+                <input type="number" name="A1IDCard" id="form1Example6" class="form-control" />
+                <label class="form-label" for="form1Example6">IDCard number</label>
             </div>
 
             <!-- Submit button -->
@@ -119,6 +169,46 @@
             <br>
             </form>
 
+            <?php
+
+                    if(isset($_POST['CreateSimpleUser'])){
+
+                        //Read Stored proc with param
+                        $tsql = "{call inserNewAX(?,?,?,?,?,?,?,?,?,?)}";
+
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_SESSION['CompanyID']),
+                            array($_POST['A1FName']),
+                            array((int)$_SESSION['NextEmpID']),
+                            array($_POST['A1BirthDate']),
+                            array((int)$_POST['A1Sex']),
+                            array($_POST['A1UserName']),
+                            array($_POST['A1Pass']),
+                            // supervisor id
+                            array((int)$_SESSION['EmployeeID']),
+                            array((int)$_POST['A1IDCard']),
+                            array($_POST['A1LName'])
+                        );
+
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+
+                        PrintResultSet($getResults);
+                        // Free query  resources. 
+                        sqlsrv_free_stmt($getResults);
+
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+
+                    }
+
+
+            ?>
 
         </div>
         </div>
@@ -721,77 +811,363 @@
 
     <!-- Titles -->
     <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
-            <h3>Additional options for the company</h3>
+            <?php
+            echo '<h3>Additional options for the company. (Company ID = '.$_SESSION['CompanyID'].')</h3>';
+            ?>
             <hr>
             <br>
         </div>
 
         <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
+    <form method="POST">
+        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
 
-        <div class="p-3">
-            <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
-            <br>
-            <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
-            <br>
-            <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
-            <br>
-            <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
-            <br>
-            <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
-            <br>
-            <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
-            <br>
-            <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
-            <br>
-            <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button>
-            <br>
-            <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
-            <br>
+        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
 
-            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
-                <div class = "text-center"><h4>Show k least included questions in questionnaires</h4></div>
-                                <hr>
+        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
 
-                            <!-- k parameter input --> 
-                            <div class="form-outline mb-4">
-                                <input type="number" name="kNumber" id="form1Example21" class="form-control" />
-                                <label class="form-label" for="form1Example21">Enter k parameter</label>
-                            </div> 
-                <button type="submit" name="kParameterQuestion" class="btn btn-primary btn-block">Search</button>
-            </form>
+        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
 
-            <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
-                <div class = "text-center"><h4>Show total number of questions in a questionnaire including its child questionnaires</h4></div>
-                                <hr>
+        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
 
-                            <!-- X parameter input --> 
-                            <div class="form-outline mb-4">
-                                <input type="number" name="xNumber" id="form1Example21" class="form-control" />
-                                <label class="form-label" for="form1Example21">Enter Parent Questionnaire Number ID</label>
-                            </div> 
-                <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block">Search</button>
-            </form>
+        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
 
-            </div>
+        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
 
-            <br>
-    
+        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+    </form>
+
+    <!-- <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button> -->
+
+    <!-- Query 14 -->
+    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+        <div class="text-center">
+            <h4>Questionnaires that include the questions of the questionnaire below</h4>
+        </div>
+        <hr>
+
+        <!-- qID parameter input -->
+        <div class="form-outline mb-4">
+            <input type="number" name="qIDNumber" id="form1Example21" class="form-control" />
+            <label class="form-label" for="form1Example21">Enter questionnaire ID</label>
+        </div>
+        <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Search</button>
+    </form>
+
+    <!-- Query 15 -->
+    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+        <div class="text-center">
+            <h4>Show k least included questions in questionnaires</h4>
+        </div>
+        <hr>
+
+        <!-- k parameter input -->
+        <div class="form-outline mb-4">
+            <input type="number" name="kNumber" id="form1Example21" class="form-control" />
+            <label class="form-label" for="form1Example21">Enter k parameter</label>
+        </div>
+        <button type="submit" name="kParameterQuestion" class="btn btn-primary btn-block">Search</button>
+    </form>
+
+    <!-- Query 17 -->
+    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+        <div class="text-center">
+            <h4>Show total number of questions in a questionnaire including its child questionnaires</h4>
+        </div>
+        <hr>
+
+        <!-- X parameter input -->
+        <div class="form-outline mb-4">
+            <input type="number" name="xNumber" id="form1Example21" class="form-control" />
+            <label class="form-label" for="form1Example21">Enter Parent Questionnaire Number ID</label>
+        </div>
+        <button type="submit" name="XParameterQuestion" class="btn btn-primary btn-block mb-3">Search</button>
+    </form>
+
+    <!-- </div> -->
+
     <div class="w-50" style="margin-left: 25%;">
-        <form method="post"> 
-        <button type="submit" name="disconnect" class="btn btn-primary btn-block">Disconnect</button>
+        <form method="post">
+            <button type="submit" name="disconnect" class="btn btn-primary btn-block mb-3">Disconnect</button>
         </form>
-        <br>
     </div>
-    </div>
+    <!-- </div> -->
 
     <?php
-    if(isset($_POST['disconnect'])) { 
-    //echo "Clossing session and redirecting to start page"; 
-    session_unset();
-    session_destroy();
-    die('<meta http-equiv="refresh" content="0; url=index.php" />');
-    } 
-    ?> 
+    //Q7
+    if (isset($_POST['QairesReport'])) {
+        $tsql = "{call QuestionnaireReport(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q8
+    if (isset($_POST['PopularQuestions'])) {
+        $tsql = "{call popularQuestions(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q9
+    if (isset($_POST['QnumPerQaire'])) {
+        $tsql = "{call questionsNumberPerQair(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q10
+    if (isset($_POST['AvgQuestions'])) {
+        $tsql = "{call averageQuestionsPerCompany(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q11
+    if (isset($_POST['BigQaires'])) {
+        $tsql = "{call bigQuestionnairesPerCompany(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q12
+    if (isset($_POST['SmallQaires'])) {
+        $tsql = "{call smallestQuestionnaires(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q13
+    if (isset($_POST['CommonQuestionsExactly'])) {
+        $tsql = "{call QairesWithSameQuestionsExactly(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q14
+    if (isset($_POST['CommonQuestionsAtLeast'])) {
+        $tsql = "{call SubsetQairsOfAQair(?,?)}";
+
+        $params = array(
+            array((int)$_POST['qIDNumber']),
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q15
+    if (isset($_POST['kParameterQuestion'])) {
+        $tsql = "{call kQuestionsLeastAppeared(?,?)}";
+
+        $params = array(
+            array((int)$_POST['kNumber']),
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q16
+    if (isset($_POST['QuestionsInAllQaires'])) {
+        $tsql = "{call QuestionsInAllQuestionnaires(?)}";
+
+        $params = array(
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q17
+    if (isset($_POST['XParameterQuestion'])) {
+        $tsql = "{call DerivativesOfAQuestionnaire(?,?)}";
+
+        $params = array(
+            array((int)$_POST['xNumber']),
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+
+    // print a certain column (1i i 2i i 3i...)
+    function PrintResultCol($resultSet, $column)
+    {
+        $cnt = 0;
+        while ($row = sqlsrv_fetch_array($resultSet, SQLSRV_FETCH_ASSOC)) {
+            foreach ($row as $col) {
+                $cnt++;
+                if ($cnt == $column)
+                    return (is_null($col) ? "Null" : $col);
+            }
+            $cnt = 0;
+        }
+    }
+
+    ?>
+
+
+    <?php
+    if (isset($_POST['disconnect'])) {
+        //echo "Clossing session and redirecting to start page"; 
+        session_unset();
+        session_destroy();
+        die('<meta http-equiv="refresh" content="0; url=index.php" />');
+    }
+
+    ?>
+
+    
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
