@@ -418,7 +418,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
                     if ($getResults == FALSE)
                         die(FormatErrors(sqlsrv_errors()));
 
-                    PrintResultSetDate($getResults, 'RegDate', 'BirthDate');
+                    PrintResultSetDate2($getResults, 'RegDate', 'BirthDate');
                     // Free query  resources. 
                     sqlsrv_free_stmt($getResults);
 
@@ -1015,7 +1015,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         echo 'QueryTime: ' . $execution_time . ' ms';
     }
 
-    //Q9 NOT DONE
+    //Q9
     if (isset($_POST['QnumPerQaire'])) {
         $tsql = "{call questionsNumberPerQair(?)}";
 
@@ -1193,7 +1193,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         echo 'QueryTime: ' . $execution_time . ' ms';
     }
 
-    //Q17 NOT DONE
+    //Q17
     if (isset($_POST['XParameterQuestion'])) {
         $tsql = "{call DerivativesOfAQuestionnaire(?,?)}";
 
