@@ -47,6 +47,16 @@ $_SESSION['NextAnswerID'] = PrintResultCol($result, 1);
 $_SESSION['NextAnswerID']++;
 // echo $_SESSION['NextAnswerID'];
 
+$query = "SELECT TOP (1) QairNum FROM QUESTIONNAIRE ORDER BY (QairNum)DESC";
+
+$result = sqlsrv_query($conn, $query);
+$_SESSION['NextQairNum'] = PrintResultCol($result, 1);
+if($_SESSION['NextQairNum'] == NULL)
+    $_SESSION['NextQairNum'] = 1;
+else
+    $_SESSION['NextQairNum']++;
+// echo $_SESSION['NextQiarNumID'];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -371,6 +381,133 @@ $_SESSION['NextAnswerID']++;
             </div>
         </div>
         <div class="accordion-item">
+            <h2 class="accordion-header" id="headingT">
+                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTT" aria-expanded="false" aria-controls="collapseTT">
+                    View Questionnaires of the Company
+                </button>
+            </h2>
+            <div id="collapseTT" class="accordion-collapse collapse" aria-labelledby="headingTT" data-mdb-parent="#accordionExample">
+                <div class="accordion-body">
+
+                <?php
+
+                            //Read Stored proc with param
+                            $tsql = "{call showQuestionnaires(?)}";
+
+                            // Getting parameter from the http call and setting it for the SQL call
+                            $params = array(
+                                array((int)$_SESSION['CompanyID'])
+                            );
+
+                            $time_start = microtime(true);
+                            $getResults = sqlsrv_query($conn, $tsql, $params);
+                            $time_end = microtime(true);
+                            //echo ("Results:<br/>");
+                            if ($getResults == FALSE)
+                                die(FormatErrors(sqlsrv_errors()));
+
+                            PrintResultSet($getResults);
+                            // Free query  resources. 
+                            sqlsrv_free_stmt($getResults);
+
+                            $execution_time = round((($time_end - $time_start) * 1000), 2);
+                            echo 'QueryTime: ' . $execution_time . ' ms';
+                ?>
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingF">
+                <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseF" aria-expanded="false" aria-controls="collapseF">
+                    View Questions of a Questionnaire
+                </button>
+            </h2>
+            <div id="collapseF" class="accordion-collapse collapse" aria-labelledby="headingF" data-mdb-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
+                        <div class="text-center">
+                            <h4>Enter Questionnaire Details</h4>
+                        </div>
+                        <hr>
+
+                        <!-- Title input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="A38QairNum" id="form1Example16" class="form-control" />
+                            <label class="form-label" for="form1Example16">Questionnaire ID</label>
+                        </div>
+                        <!-- Submit button -->
+                        <button type="submit" name="ViewQuestionnaireForQuestions" class="btn btn-primary btn-block">Submit</button>
+                        <br>
+                    </form>
+
+                    <?php
+
+                            if (isset($_POST['ViewQuestionnaireForQuestions'])){
+                                //Read Stored proc with param
+                                $tsql = "{call displayQuestionnaireFreeTextQ(?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_POST['A38QairNum'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+   
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                PrintResultSet($getResults); 
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                //Read Stored proc with param
+                                $tsql = "{call displayQuestionnaireNumericalQ(?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_POST['A38QairNum'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                PrintResultSet($getResults); 
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                //Read Stored proc with param
+                                $tsql = "{call displayQuestionnaireMCQQ(?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_POST['A38QairNum'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                PrintResultSet($getResults); 
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+                            }
+                    ?>
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                     Create a Questionnaire
@@ -387,7 +524,7 @@ $_SESSION['NextAnswerID']++;
 
                         <!-- Title input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="Title" id="form1Example16" class="form-control" />
+                            <input type="text" name="A31Title" id="form1Example16" class="form-control" />
                             <label class="form-label" for="form1Example16">Title</label>
                         </div>
 
@@ -400,17 +537,35 @@ $_SESSION['NextAnswerID']++;
                         <!-- Parent Title needs to be set to Title -->
                         <!-- What happens with clone? -->
 
-                        <!-- QairNum input -->
-                        <div class="form-outline mb-4">
-                            <input type="number" name="QairNum" id="form1Example15" class="form-control" />
-                            <label class="form-label" for="form1Example14">Questionnaire Number ID</label>
-                        </div>
-
                         <!-- Submit button -->
                         <button type="submit" name="CreateQuestionnaire" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
 
+                    <?php
+
+                            if (isset($_POST['CreateQuestionnaire'])){
+                                //Read Stored proc with param
+                                $tsql = "{call createQuestionnaire(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array($_POST['A31Title']),
+                                    array((int)$_SESSION['NextQairNum']),
+                                    array((int)$_SESSION['CompanyID'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+                            }
+                    ?>
 
                 </div>
             </div>
@@ -452,6 +607,31 @@ $_SESSION['NextAnswerID']++;
                         <button type="submit" name="AddQuestionIntoQuestionnaire" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
+
+                    <?php
+
+                            if (isset($_POST['CreateQuestionnaire'])){
+                                //Read Stored proc with param
+                                $tsql = "{call createQuestionnaire(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array($_POST['A31Title']),
+                                    array((int)$_SESSION['NextQairNum']),
+                                    array((int)$_SESSION['CompanyID'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+                            }
+                    ?>
 
                     <br>
                     <br>
