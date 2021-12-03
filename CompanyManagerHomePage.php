@@ -588,7 +588,7 @@ else
 
                         <!-- QairNum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="QairNum" id="form1Example15" class="form-control" />
+                            <input type="number" name="A40QairNum" id="form1Example15" class="form-control" />
                             <label class="form-label" for="form1Example14">Questionnaire Number ID</label>
                         </div>
 
@@ -599,7 +599,7 @@ else
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="Qnum" id="form1Example16" class="form-control" />
+                            <input type="number" name="A40Qnum" id="form1Example16" class="form-control" />
                             <label class="form-label" for="form1Example16">Question Number</label>
                         </div>
 
@@ -609,15 +609,15 @@ else
                     </form>
 
                     <?php
-
-                            if (isset($_POST['CreateQuestionnaire'])){
+                            // NOT TESTED
+                            if (isset($_POST['AddQuestionIntoQuestionnaire'])){
                                 //Read Stored proc with param
-                                $tsql = "{call createQuestionnaire(?,?,?)}";
+                                $tsql = "{call addQuestionToTheQuestionnaire(?,?,?)}";
 
                                 // Getting parameter from the http call and setting it for the SQL call
                                 $params = array(
-                                    array($_POST['A31Title']),
-                                    array((int)$_SESSION['NextQairNum']),
+                                    array((int)$_POST['A40Qnum']),
+                                    array((int)$_POST['A40QairNum']),
                                     array((int)$_SESSION['CompanyID'])
                                 );
 
@@ -645,7 +645,7 @@ else
 
                         <!-- QairNum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="QairNum" id="form1Example15" class="form-control" />
+                            <input type="number" name="A41QairNum" id="form1Example15" class="form-control" />
                             <label class="form-label" for="form1Example14">Questionnaire Number ID</label>
                         </div>
 
@@ -656,7 +656,7 @@ else
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="Qnum" id="form1Example16" class="form-control" />
+                            <input type="number" name="A41Qnum" id="form1Example16" class="form-control" />
                             <label class="form-label" for="form1Example16">Question Number</label>
                         </div>
 
@@ -664,6 +664,31 @@ else
                         <button type="submit" name="RemoveQuestionFromQuestionnaire" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
+
+                    <?php
+                            // NOT TESTED
+                            if (isset($_POST['RemoveQuestionFromQuestionnaire'])){
+                                //Read Stored proc with param
+                                $tsql = "{call deleteQuestionFromTheQuestionnaire(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_POST['A41Qnum']),
+                                    array((int)$_POST['A41QairNum']),
+                                    array((int)$_SESSION['CompanyID'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+                            }
+                    ?>
 
                     <br>
                     <br>
@@ -677,7 +702,7 @@ else
 
                         <!-- QairNum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="QairNum" id="form1Example15" class="form-control" />
+                            <input type="number" name="42QairNum" id="form1Example15" class="form-control" />
                             <label class="form-label" for="form1Example14">Questionnaire Number ID</label>
                         </div>
 
@@ -688,13 +713,13 @@ else
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="Qnum" id="form1Example16" class="form-control" />
+                            <input type="number" name="42Qnum" id="form1Example16" class="form-control" />
                             <label class="form-label" for="form1Example16">Old Question Question Number</label>
                         </div>
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
-                            <input type="number" name="Qnum2" id="form1Example16" class="form-control" />
+                            <input type="number" name="42Qnum2" id="form1Example16" class="form-control" />
                             <label class="form-label" for="form1Example16">New Question Question Number</label>
                         </div>
 
@@ -702,6 +727,32 @@ else
                         <button type="submit" name="ReplaceQuestionFromQuestionnaire" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
+
+                    <?php
+                            // NOT TESTED
+                            if (isset($_POST['ReplaceQuestionFromQuestionnaire'])){
+                                //Read Stored proc with param
+                                $tsql = "{call swapQuestionsToTheQuestionnaire(?,?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_POST['42Qnum']),
+                                    array((int)$_POST['42QairNum']),
+                                    array((int)$_SESSION['CompanyID']),
+                                    array((int)$_POST['42Qnum2'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+                            }
+                    ?>
 
                 </div>
             </div>
