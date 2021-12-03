@@ -397,7 +397,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    View details of a Company
+                    View details of a Company and its manager
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
@@ -690,7 +690,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSix">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    View details of a certain question
+                    View questions of a certain questionnaire
                 </button>
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-mdb-parent="#accordionExample">
@@ -698,14 +698,14 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
                     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
                         <div class="text-center">
-                            <h4>Enter Details to view Question</h4>
+                            <h4>Enter Questionnaire number to view Questions</h4>
                         </div>
                         <hr>
 
                         <!-- Qnum input -->
                         <div class="form-outline mb-4">
                             <input type="number" name="A6Qnum" id="form1Example20" class="form-control" />
-                            <label class="form-label" for="form1Example20">Question Number</label>
+                            <label class="form-label" for="form1Example20">Questionnaire Number</label>
                         </div>
 
                         <!-- Submit button -->
@@ -919,7 +919,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
     <!-- Query 14 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Questionnaires that include the questions of the questionnaire below</h4>
+            <h4>Questionnaires that include at least the questions of the questionnaire below</h4>
         </div>
         <hr>
 

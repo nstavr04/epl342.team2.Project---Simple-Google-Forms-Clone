@@ -83,7 +83,7 @@ else
         <h2>Welcome to Company Manager Home Page</h2>
         <hr>
     </div>
-
+    
     <div class="text-center page-header w-50 " style="margin-left: 25.5%;">
         <h3>Pick one of the options below</h3>
         <hr>
@@ -1488,35 +1488,41 @@ else
                             <label class="form-label" for="form1Example16">Questionnaire Number ID</label>
                         </div>
 
+                        <!-- Title input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" name="A45Title" id="form1Example16" class="form-control" />
+                            <label class="form-label" for="form1Example16">Cloned Questionnaire Title</label>
+                        </div>
+
                         <!-- Submit button -->
                         <button type="submit" name="CloneQuestionnaire" class="btn btn-primary btn-block">Submit</button>
                         <br>
                     </form>
-
+                    
                     <?php
-
-                        if (isset($_POST['CloneQuestionnaire'])){
-                            //Read Stored proc with param
-                            $tsql = "{call cloneQuestionnaire(?,?,?)}";
-
-                            // Getting parameter from the http call and setting it for the SQL call
-                            $params = array(
-                                array((int)$_POST['A45QairNum']),
-                                array((int)$_SESSION['CompanyID']),
-                                array((int)$_SESSION['NextQairNum'])
-                            );
-
-                            $time_start = microtime(true);
-                            $getResults = sqlsrv_query($conn, $tsql, $params);
-                            $time_end = microtime(true);
-                            //echo ("Results:<br/>");
-                            if ($getResults == FALSE)
-                                die(FormatErrors(sqlsrv_errors()));
-
-                            $execution_time = round((($time_end - $time_start) * 1000), 2);
-                            echo 'QueryTime: ' . $execution_time . ' ms';
-                        }
-                        ?>
+                    if (isset($_POST['CloneQuestionnaire'])){
+                        //Read Stored proc with param
+                        $tsql = "{call cloneQuestionnaire(?,?,?,?)}";
+                    
+                        // Getting parameter from the http call and setting it for the SQL call
+                        $params = array(
+                            array((int)$_POST['A45QairNum']),
+                            array((int)$_SESSION['CompanyID']),
+                            array((int)$_SESSION['NextQairNum']),
+                            array($_POST['A45Title'])
+                        );
+                    
+                        $time_start = microtime(true);
+                        $getResults = sqlsrv_query($conn, $tsql, $params);
+                        $time_end = microtime(true);
+                        //echo ("Results:<br/>");
+                        if ($getResults == FALSE)
+                            die(FormatErrors(sqlsrv_errors()));
+                    
+                        $execution_time = round((($time_end - $time_start) * 1000), 2);
+                        echo 'QueryTime: ' . $execution_time . ' ms';
+                    }
+                    ?>
 
                 </div>
             </div>
