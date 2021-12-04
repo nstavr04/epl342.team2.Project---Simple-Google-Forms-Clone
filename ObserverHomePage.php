@@ -1215,6 +1215,52 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         $execution_time = round((($time_end - $time_start) * 1000), 2);
         echo 'QueryTime: ' . $execution_time . ' ms';
     }
+
+    //Q17 - Total count of children qaires
+    if (isset($_POST['XParameterQuestion'])) {
+        $tsql = "{call DerivativesOfAQuestionnaireCountOfChildren(?,?)}";
+
+        $params = array(
+            array((int)$_POST['xNumber']),
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
+
+    //Q17 Total count of levels 
+    if (isset($_POST['XParameterQuestion'])) {
+        $tsql = "{call DerivativesOfAQuestionnaireCountOfLevels(?,?)}";
+
+        $params = array(
+            array((int)$_POST['xNumber']),
+            array((int)$_SESSION['CompanyID'])
+        );
+
+        $time_start = microtime(true);
+        $getResults = sqlsrv_query($conn, $tsql, $params);
+        $time_end = microtime(true);
+
+        if ($getResults == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
+
+        PrintResultSet($getResults);
+        sqlsrv_free_stmt($getResults);
+
+        $execution_time = round((($time_end - $time_start) * 1000), 2);
+        echo 'QueryTime: ' . $execution_time . ' ms';
+    }
     ?>
 
 
