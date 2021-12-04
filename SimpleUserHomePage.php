@@ -53,7 +53,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingT">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTT" aria-expanded="false" aria-controls="collapseTT">
-                    View Questionnaires of the Company 
+                    View Questionnaires of the Company  (Q6)
                 </button>
             </h2>
             <div id="collapseTT" class="accordion-collapse collapse" aria-labelledby="headingTT" data-mdb-parent="#accordionExample">
@@ -90,7 +90,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingF">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseF" aria-expanded="false" aria-controls="collapseF">
-                    View Questions of a Questionnaire
+                    View Questions of a Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseF" class="accordion-collapse collapse" aria-labelledby="headingF" data-mdb-parent="#accordionExample">
@@ -430,7 +430,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwelve">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                    View Questions of the company 
+                    View Questions of the company (Q5) 
                 </button>
             </h2>
             <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-mdb-parent="#accordionExample">

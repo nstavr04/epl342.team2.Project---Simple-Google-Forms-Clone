@@ -690,7 +690,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSix">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    View questions of a certain questionnaire
+                    View questions of a certain questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-mdb-parent="#accordionExample">
@@ -797,7 +797,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSeven">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                    View details of a certain questionnaire
+                    View details of a certain questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-mdb-parent="#accordionExample">
@@ -897,21 +897,21 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
 
     <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
     <form method="POST">
-        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires (Q7)</button>
 
-        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
+        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions (Q8)</button>
 
-        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
+        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire (Q9)</button>
 
-        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
+        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires (Q12)</button>
 
-        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
+        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires (Q11)</button>
 
-        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
+        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company (Q10)</button>
 
-        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
+        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions (Q13)</button>
 
-        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company (Q16)</button>
     </form>
 
     <!-- <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button> -->
@@ -919,7 +919,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
     <!-- Query 14 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Questionnaires that include at least the questions of the questionnaire below</h4>
+            <h4>Questionnaires that include at least the questions of the questionnaire below (Q14)</h4>
         </div>
         <hr>
 
@@ -934,7 +934,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
     <!-- Query 15 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show k least included questions in questionnaires</h4>
+            <h4>Show k least included questions in questionnaires (Q15)</h4>
         </div>
         <hr>
 
@@ -949,7 +949,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
     <!-- Query 17 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show total number of questions in a questionnaire including its child questionnaires</h4>
+            <h4>Show total number of questions in a questionnaire including its child questionnaires (Q17)</h4>
         </div>
         <hr>
 
