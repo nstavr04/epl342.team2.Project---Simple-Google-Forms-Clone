@@ -307,7 +307,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Add Company and Company Manager
+                    Add Company and Company Manager (Q1)
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
@@ -397,7 +397,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    View details of a Company and its manager
+                    View details of a Company and its manager (Q2)
                 </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
@@ -467,7 +467,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Modify details of a Company
+                    Modify details of a Company (Q2)
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
@@ -540,7 +540,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    View details of a Company Manager or User
+                    View details of a Company Manager or User (Q2)
                 </button>
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-mdb-parent="#accordionExample">
@@ -601,7 +601,7 @@ function PrintResultSetDate2($resultSet, $datevar, $date2var)
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Modify details of a Company Manager
+                    Modify details of a Company Manager (Q2)
                 </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-mdb-parent="#accordionExample">

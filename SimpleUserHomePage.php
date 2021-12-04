@@ -53,7 +53,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingT">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTT" aria-expanded="false" aria-controls="collapseTT">
-                    View Questionnaires of the Company
+                    View Questionnaires of the Company 
                 </button>
             </h2>
             <div id="collapseTT" class="accordion-collapse collapse" aria-labelledby="headingTT" data-mdb-parent="#accordionExample">
@@ -180,7 +180,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Create a Questionnaire
+                    Create a Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-mdb-parent="#accordionExample">
@@ -243,7 +243,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSix">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    Modify an existing Questionnaire
+                    Modify an existing Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-mdb-parent="#accordionExample">
@@ -430,7 +430,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwelve">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                    View Questions of the company
+                    View Questions of the company 
                 </button>
             </h2>
             <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-mdb-parent="#accordionExample">
@@ -506,7 +506,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSeven">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                    Create a Question
+                    Create a Question (Q5)
                 </button>
             </h2>
             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-mdb-parent="#accordionExample">
@@ -785,7 +785,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingEleven">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                    Delete a question
+                    Delete a question (Q5)
                 </button>
             </h2>
             <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-mdb-parent="#accordionExample">
@@ -839,7 +839,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingEight">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                    Modify an existing Question
+                    Modify an existing Question (Q5)
                 </button>
             </h2>
             <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-mdb-parent="#accordionExample">
@@ -1140,7 +1140,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingNine">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                    Clone a Questionnaire
+                    Clone a Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-mdb-parent="#accordionExample">
@@ -1212,21 +1212,21 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
 
     <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
     <form method="POST">
-        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires (Q7)</button>
 
-        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
+        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions (Q8)</button>
 
-        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
+        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire (Q9)</button>
 
-        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
+        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires (Q12)</button>
 
-        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
+        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires (Q11)</button>
 
-        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
+        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company (Q10)</button>
 
-        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
+        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions (Q13)</button>
 
-        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company (Q16)</button>
     </form>
 
     <!-- <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button> -->
@@ -1234,7 +1234,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
     <!-- Query 14 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Questionnaires that include the questions of the questionnaire below</h4>
+            <h4>Questionnaires that include the questions of the questionnaire below (Q14)</h4>
         </div>
         <hr>
 
@@ -1249,7 +1249,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
     <!-- Query 15 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show k least included questions in questionnaires</h4>
+            <h4>Show k least included questions in questionnaires (Q15)</h4>
         </div>
         <hr>
 
@@ -1264,7 +1264,7 @@ if (!isset($_SESSION['PersonType']) || $_SESSION['PersonType'] != 0) {
     <!-- Query 17 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show total number of questions in a questionnaire including its child questionnaires</h4>
+            <h4>Show total number of questions in a questionnaire including its child questionnaires (Q17)</h4>
         </div>
         <hr>
 

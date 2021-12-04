@@ -97,7 +97,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Add a Simple User
+                    Add a Simple User (Q3)
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
@@ -207,7 +207,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingT">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseT" aria-expanded="false" aria-controls="collapseT">
-                    View Details of Simple Users
+                    View Details of Simple Users (Q4)
                 </button>
             </h2>
             <div id="collapseT" class="accordion-collapse collapse" aria-labelledby="headingT" data-mdb-parent="#accordionExample">
@@ -245,7 +245,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    View Details of a Simple User
+                    View Details of a Simple User (Q4)
                 </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-mdb-parent="#accordionExample">
@@ -304,7 +304,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Modify Details of a Simple User
+                    Modify Details of a Simple User (Q4)
                 </button>
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-mdb-parent="#accordionExample">
@@ -383,7 +383,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingT">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTT" aria-expanded="false" aria-controls="collapseTT">
-                    View Questionnaires of the Company
+                    View Questionnaires of the Company (Q4)
                 </button>
             </h2>
             <div id="collapseTT" class="accordion-collapse collapse" aria-labelledby="headingTT" data-mdb-parent="#accordionExample">
@@ -420,7 +420,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingF">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseF" aria-expanded="false" aria-controls="collapseF">
-                    View Questions of a Questionnaire
+                    View Questions of a Questionnaire 
                 </button>
             </h2>
             <div id="collapseF" class="accordion-collapse collapse" aria-labelledby="headingF" data-mdb-parent="#accordionExample">
@@ -510,7 +510,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Create a Questionnaire
+                    Create a Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-mdb-parent="#accordionExample">
@@ -573,7 +573,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSix">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    Modify an existing Questionnaire
+                    Modify an existing Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-mdb-parent="#accordionExample">
@@ -836,7 +836,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingSeven">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                    Create a Question
+                    Create a Question (Q5)
                 </button>
             </h2>
             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-mdb-parent="#accordionExample">
@@ -1115,7 +1115,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingEleven">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                    Delete a question
+                    Delete a question (Q5)
                 </button>
             </h2>
             <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-mdb-parent="#accordionExample">
@@ -1169,7 +1169,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingEight">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                    Modify an existing Question
+                    Modify an existing Question (Q5)
                 </button>
             </h2>
             <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-mdb-parent="#accordionExample">
@@ -1470,7 +1470,7 @@ else
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingNine">
                 <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                    Clone a Questionnaire
+                    Clone a Questionnaire (Q6)
                 </button>
             </h2>
             <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-mdb-parent="#accordionExample">
@@ -1542,21 +1542,21 @@ else
 
     <!-- Add the buttons. Q15 AND Q17 need to input a value x as well -->
     <form method="POST">
-        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires</button>
+        <button type="submit" name="QairesReport" class="btn btn-primary btn-block">View a report of all questionnaires (Q7)</button>
 
-        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions</button>
+        <button type="submit" name="PopularQuestions" class="btn btn-primary btn-block">Show popular questions (Q8)</button>
 
-        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire</button>
+        <button type="submit" name="QnumPerQaire" class="btn btn-primary btn-block">Show total question number of each questionnaire (Q9)</button>
 
-        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires</button>
+        <button type="submit" name="SmallQaires" class="btn btn-primary btn-block">Show small questionnaires (Q12)</button>
 
-        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires</button>
+        <button type="submit" name="BigQaires" class="btn btn-primary btn-block">Show big questionnaires (Q11)</button>
 
-        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company</button>
+        <button type="submit" name="AvgQuestions" class="btn btn-primary btn-block">Show average number of questions of company (Q10)</button>
 
-        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions</button>
+        <button type="submit" name="CommonQuestionsExactly" class="btn btn-primary btn-block">Show the questionnaires that have the exact same questions (Q13)</button>
 
-        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company</button>
+        <button type="submit" name="QuestionsInAllQaires" class="btn btn-primary btn-block">Show the questions that are in all questionnaires of the company (Q16)</button>
     </form>
 
     <!-- <button type="submit" name="CommonQuestionsAtLeast" class="btn btn-primary btn-block">Show the questionnaires that include in them the same questions and more</button> -->
@@ -1564,7 +1564,7 @@ else
     <!-- Query 14 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Questionnaires that include the questions of the questionnaire below</h4>
+            <h4>Questionnaires that include the questions of the questionnaire below (Q14)</h4>
         </div>
         <hr>
 
@@ -1579,7 +1579,7 @@ else
     <!-- Query 15 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show k least included questions in questionnaires</h4>
+            <h4>Show k least included questions in questionnaires (Q15)</h4>
         </div>
         <hr>
 
@@ -1594,7 +1594,7 @@ else
     <!-- Query 17 -->
     <form method="post" class="w-25 p-3" style="margin-left: 37.5%;">
         <div class="text-center">
-            <h4>Show total number of questions in a questionnaire including its child questionnaires</h4>
+            <h4>Show total number of questions in a questionnaire including its child questionnaires (Q17)</h4>
         </div>
         <hr>
 
