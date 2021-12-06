@@ -630,6 +630,27 @@ else
 
                                 $execution_time = round((($time_end - $time_start) * 1000), 2);
                                 echo 'QueryTime: ' . $execution_time . ' ms';
+
+
+                                //Read Stored proc with param
+                                $tsql = "{call addToEdits(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_SESSION['EmployeeID']),
+                                    array((int)$_POST['A40QairNum']),
+                                    array((int)$_POST['A40Qnum'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
                             }
                     ?>
 
@@ -676,6 +697,26 @@ else
                                     array((int)$_POST['A41Qnum']),
                                     array((int)$_POST['A41QairNum']),
                                     array((int)$_SESSION['CompanyID'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+
+                                //Read Stored proc with param
+                                $tsql = "{call addToEdits(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_SESSION['EmployeeID']),
+                                    array((int)$_POST['A41QairNum']),
+                                    array((int)$_POST['A41Qnum'])
                                 );
 
                                 $time_start = microtime(true);
@@ -740,6 +781,27 @@ else
                                     array((int)$_POST['42QairNum']),
                                     array((int)$_SESSION['CompanyID']),
                                     array((int)$_POST['42Qnum2'])
+                                );
+
+                                $time_start = microtime(true);
+                                $getResults = sqlsrv_query($conn, $tsql, $params);
+                                $time_end = microtime(true);
+                                //echo ("Results:<br/>");
+                                if ($getResults == FALSE)
+                                    die(FormatErrors(sqlsrv_errors()));
+
+                                $execution_time = round((($time_end - $time_start) * 1000), 2);
+                                echo 'QueryTime: ' . $execution_time . ' ms';
+
+
+                                //Read Stored proc with param
+                                $tsql = "{call addToEdits(?,?,?)}";
+
+                                // Getting parameter from the http call and setting it for the SQL call
+                                $params = array(
+                                    array((int)$_SESSION['EmployeeID']),
+                                    array((int)$_POST['A42QairNum']),
+                                    array((int)$_POST['A42Qnum'])
                                 );
 
                                 $time_start = microtime(true);
