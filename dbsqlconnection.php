@@ -1,9 +1,9 @@
 <?php
 
-        $dbServerName = "universitycsdbnstavr04.database.windows.net";
-        $connectionOptions = array("Database" => "epl342ProjectTeam2",
-                    "UID" => "user342",
-                    "PWD" => "AdminVaseis123");
+        $dbServerName = "";
+        $connectionOptions = array("Database" => "",
+                    "UID" => "",
+                    "PWD" => "");
         $conn = sqlsrv_connect($dbServerName, $connectionOptions);
         if($conn == false)
             echo "Connection was unsuccessful";
